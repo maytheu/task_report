@@ -1,0 +1,12 @@
+**/.dockerignore
+**/.env
+**/.git
+**/.gitignore
+**/.vs
+**/.vscode
+**/*.*proj.user
+**/*.dbmdl
+**/node_modules
+**/npm-debug.log
+**/obj
+README.md
