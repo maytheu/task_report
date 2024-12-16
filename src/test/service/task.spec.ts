@@ -35,7 +35,7 @@ describe("Test suite for task report", () => {
     });
   });
 
-  describe.only("tasks", () => {
+  describe("tasks", () => {
     const sut = TaskService.tasks;
     it("Should return all data without filtering", async () => {
       const paginate = { page: 1, limit: 10 };
@@ -55,10 +55,10 @@ describe("Test suite for task report", () => {
       const expected: any = await sut({}, paginate);
 
       expect(expected.total).toBe(mockCount);
-      expect(expected.tasks).toEqual(mockTasks); 
+      expect(expected.tasks).toEqual(mockTasks);
     });
 
-    it("Should return  data after filtering by name", async () => {
+    it("Should return  data after filtering ", async () => {
       const paginate = { page: 1, limit: 10 };
       const mockTasks = [
         { name: "Task 1", department: "HR", hour: "2", createdAt: new Date() },
@@ -72,10 +72,28 @@ describe("Test suite for task report", () => {
         })),
       }));
 
-      const expected: any = await sut({name:"Task 1"}, paginate);
+      const expected: any = await sut(
+        { name: "Task 1", details: "test details", department: "test" },
+        paginate,
+        false,
+        "userid"
+      );
 
       expect(expected.total).toBe(mockCount);
-      expect(expected.tasks).toEqual(mockTasks); 
+      expect(expected.tasks).toEqual(mockTasks);
+    });
+
+    it("Should return response in string ormat for excel", async () => {
+      const paginate = { page: 1, limit: 10 };
+      const mockTasks = [
+        { name: "Task 1", department: "HR", hour: "2", createdAt: new Date() },
+      ];
+
+      mockedTask.find.mockResolvedValueOnce(mockTasks);
+
+      await sut({}, paginate, true);
+
+      expect(mockedTask.find).toHaveBeenCalledWith({}, "-user -__v");
     });
   });
 
