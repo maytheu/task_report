@@ -24,7 +24,7 @@ export const authenticate: RequestHandler = async (req, res, next) => {
   }
 };
 
-export const authorization = (roles: RoleType[]) => {
+export const authorization = (roles: RoleType[]) => {  
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
       const user = await User.findById(req.user).populate("roles");

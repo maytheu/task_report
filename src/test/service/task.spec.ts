@@ -11,6 +11,10 @@ const mockedUser = jest.mocked(User);
 const mockedTask = jest.mocked(Task);
 
 describe("Test suite for task report", () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   describe("newTask", () => {
     const sut = TaskService.newTask;
     it("Should create new task", async () => {

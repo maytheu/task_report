@@ -16,6 +16,9 @@ const mockBcrypt = jest.mocked(bcrypt);
 const mockedJwt = jest.mocked(jwt);
 
 describe("Test suite for Auth service", () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
   describe("login()", () => {
     const sut = AuthService.login;
     it("Should return error if email not found", async () => {

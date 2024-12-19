@@ -7,7 +7,12 @@ jest.mock("../../model/user.model");
 
 const mockedUser = jest.mocked(User);
 
-describe.only("Profile test suite", () => {
+describe("Profile test suite", () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+
   describe("profile", () => {
     const sut = ProfileService.profile;
     const actual = "userId";
