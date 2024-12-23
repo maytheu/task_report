@@ -10,7 +10,7 @@ class ProfileController extends AppController {
       const data = await ProfileService.profile(req.user);
       if (data instanceof AppError) return next(data);
 
-      this.sendCreatedResp(res, "user profile", data as Object);
+      this.sendResp(res, "user profile", data as Object);
     } catch (error) {
       next(error);
     }
@@ -26,7 +26,7 @@ class ProfileController extends AppController {
       const data = await ProfileService.users(paginate);
       if (data instanceof AppError) return next(data);
 
-      this.sendCreatedResp(res, "All users", data as Object);
+      this.sendResp(res, "All users", data as Object);
     } catch (error) {
       next(error);
     }
@@ -48,4 +48,4 @@ class ProfileController extends AppController {
   };
 }
 
-export default new ProfileController()
+export default new ProfileController();
