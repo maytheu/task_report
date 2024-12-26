@@ -19,7 +19,7 @@ import {
 })
 export class ApiService {
   constructor(private http: HttpClient) {}
-  private url = 'localhost:30000/api/v1';
+  private url = 'http://localhost:30000/api/v1';
 
   /** Login to account */
   login(data: Login) {
